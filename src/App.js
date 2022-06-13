@@ -1,5 +1,5 @@
 import React from "react"
-import Die from "./Die"
+import Die from "./components/Die"
 
 
 export default function App() {
