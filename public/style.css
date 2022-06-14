@@ -7,8 +7,6 @@ body {
     background-color: #0B2434;
     padding: 20px;
     font-family: 'Karla', sans-serif;
-    display: flex;
-    justify-content: center;
 }
 
 main {
@@ -59,7 +57,7 @@ main {
 
 .roll-dice {
     height: 50px;
-    width: 100px;
+    width: 150px;
     border: none;
     border-radius: 6px;
     background-color: #5035FF;
