@@ -76,3 +76,12 @@ main {
 .roll-dice:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+
+.times{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0px;
+}

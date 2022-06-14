@@ -38,10 +38,13 @@ export default function App() {
             setTenzies(true)
 
             // not sure how to make it work
-            // localStorage.setItem("recentTime", String(timeTaken))
-            // if (timeTaken < localStorage.getItem("lowestTime")){
-            //     localStorage.setItem("lowestTime", String(timeTaken))
-            // }
+            console.log(localStorage.getItem("lowestTime"))
+            if (localStorage.getItem("lowestTime") === null){
+                localStorage.setItem("lowestTime", String(timeTaken))}
+
+            if (timeTaken < localStorage.getItem("lowestTime")){
+                localStorage.setItem("lowestTime", String(timeTaken))
+            }
         }
 
 
@@ -105,11 +108,11 @@ export default function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
-            {tenzies && (<div>
+            {tenzies && (<div className="times">
                 <h4>That took you {time} seconds!</h4>
                 {/* not sure how to fix
-                <h5>Your previous time: {localStorage.getItem("recentTime")}</h5>
-                <h5>Your best time: {localStorage.getItem("lowestTime")}</h5> */}
+                <h5>Your previous time: {localStorage.getItem("recentTime")}</h5>*/}
+                <h5>Your best time: {localStorage.getItem("lowestTime")}</h5> 
 
                 </div>
                             
