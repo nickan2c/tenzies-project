@@ -7,16 +7,47 @@ export default function App() {
 
     const [dice, setDice] = React.useState(allNewDice())
     const [tenzies, setTenzies] = React.useState(false)
-    
-    React.useEffect(() => {
+    const [time,setTime] = React.useState(0)
+    const [start,setStart] = React.useState(new Date())
+
+    /*React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
         const firstValue = dice[0].value
         const allSameValue = dice.every(die => die.value === firstValue)
         if (allHeld && allSameValue) {
-            setTenzies(true)
             console.log("You won!")
         }
+        
+    }, [dice])*/
+
+    
+    React.useEffect(() => {
+        const first = dice[0].value
+        const filtered= dice.filter(die => die.value!==first)
+        const notHeld = dice.filter(die=>die.isHeld===false).map(die=> die.isHeld)
+
+        // if one dice is held, then set start to a new time.
+        if (notHeld.length===9){
+            setStart(new Date())
+        }
+        if (notHeld.length===8){
+            var end = new Date()
+            var timeTaken= ((end.getTime() - start.getTime())/1000)
+
+            setTime(timeTaken)
+            setTenzies(true)
+
+            // not sure how to make it work
+            // localStorage.setItem("recentTime", String(timeTaken))
+            // if (timeTaken < localStorage.getItem("lowestTime")){
+            //     localStorage.setItem("lowestTime", String(timeTaken))
+            // }
+        }
+
+
+
     }, [dice])
+    
 
     function generateNewDie() {
         return {
@@ -34,19 +65,18 @@ export default function App() {
         return newDice
     }
     
-/**
- * Challenge: Allow the user to play a new game when the
- * button is clicked and they've already won
- */
-    
     function rollDice() {
-        tenzies?
-        (setDice(allNewDice()), setTenzies(false)):
-        setDice(oldDice => oldDice.map(die => {
+        if (tenzies){
+            setDice(allNewDice())
+            setTenzies(false)
+        }
+        else
+        {     
+            setDice(oldDice => oldDice.map(die => {
             return die.isHeld ? 
                 die :
                 generateNewDie()
-        }))
+        }))}
         }
     
     function holdDice(id) {
@@ -75,6 +105,15 @@ export default function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
+            {tenzies && (<div>
+                <h4>That took you {time} seconds!</h4>
+                {/* not sure how to fix
+                <h5>Your previous time: {localStorage.getItem("recentTime")}</h5>
+                <h5>Your best time: {localStorage.getItem("lowestTime")}</h5> */}
+
+                </div>
+                            
+            )}
             <button 
                 className="roll-dice" 
                 onClick={rollDice}
