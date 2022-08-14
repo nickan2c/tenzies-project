@@ -1,8 +1,11 @@
-# Getting Started with Create React App
+# Tenzies Game in React.
+This is a website which allows users to play the game tenzies. In this game, you roll 10 dice, and on each roll you choose which dice to keep on the same value. The goal is to get all of the dice on the same value.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+With this project I consolidated my knowledge with callback functions, useState and useEffect.
 
-## Available Scripts
+
+
+
 
 In the project directory, you can run:
 
